@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Table, Image } from 'react-bootstrap';
 
-function ResultList({ results, handleSelect }) {
+function ResultList({ results, onSelect }) {
 	return (
 		<Table responsive>
 			<thead>
@@ -18,7 +18,7 @@ function ResultList({ results, handleSelect }) {
 							<tr key={ index }>
 								<td>{ index + 1 }</td>
 								<td><Image src={ result.avatar_url } responsive rounded thumbnail /></td>
-								<td><a href="#" onClick={ handleSelect }>{ result.login }</a></td>
+								<td><a href="#" onClick={ e => { e.value = result; onSelect(e) } }>{ result.login }</a></td>
 							</tr>
 						)
 					})
@@ -30,7 +30,7 @@ function ResultList({ results, handleSelect }) {
 
 ResultList.propTypes = {
 	results: PropTypes.array.isRequired,
-	handleSelect: PropTypes.func
+	onSelect: PropTypes.func
 };
 
 ResultList.defaultProps = {

@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import ResultList from '../component/ResultList';
+import ResultDetail from '../component/ResultDetail';
 import axios from 'axios';
 import { Jumbotron, PageHeader, FormGroup, FormControl, Button, Alert, ControlLabel } from 'react-bootstrap';
 
@@ -9,10 +10,13 @@ class SearchPage extends Component {
 		this.state = {
 			errors: '',
 			inputValue: '',
-			results: []
+			results: [],
+			selectedResult: undefined,
+			repos: []
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleSelect = this.handleSelect.bind(this);
 	}
 
 	handleDismissClick() {
@@ -30,17 +34,49 @@ class SearchPage extends Component {
 
 	};
 
+	handleSelect(e) {
+		e.preventDefault();
+		if (e.value) {
+			this.setState({
+				selectedResult: e.value
+			})
+			if (e.value.repos_url) {
+				axios.get(e.value.repos_url)
+					.then(response => {
+						this.setState({
+							repos: response.data
+						})
+					})
+					.catch(e => { throw e });
+			}
+		}
+	}
+
 	renderResult() {
 		return this.state.results.length > 0
-			? (<ResultList results={ this.state.results } />)
+			? (<ResultList results={ this.state.results } onSelect={ this.handleSelect } />)
 			: undefined;
+	}
+
+	renderResultDetail() {
+		if (this.state.selectedResult !== undefined) {
+			return (
+				<ResultDetail result={ this.state.selectedResult } repos={ this.state.repos } />
+			);
+		} else {
+			this.setState({
+				errors: 'Selected Result was empty'
+			})
+		}
 	}
 
 	handleChange(e) {
 		this.setState({
 			inputValue: e.target.value || '',
 			errors: '',
-			results: []
+			results: [],
+			selectedResult: undefined,
+			repos: []
 		});
 	}
 
@@ -94,7 +130,11 @@ class SearchPage extends Component {
 				</Jumbotron>
 				<hr />
 				{ this.renderErrorMessage() }
-				{ this.renderResult() }
+				{
+					this.state.selectedResult !== undefined
+						? this.renderResultDetail()
+						: this.renderResult()
+				}
 			</div>
 		);
 	}
