@@ -1,9 +1,13 @@
 import React, { Component, PropTypes } from 'react';
-import { Grid, Row, Col, ControlLabel, Image, Table } from 'react-bootstrap';
+import { Grid, Row, Col, ControlLabel, Image, Table, Button, Glyphicon } from 'react-bootstrap';
 
-function ResultDetails({ result, repos }) {
+function ResultDetails({ result, repos, goBack }) {
 	return (
 		<div>
+			<Button onClick={goBack}>
+				<Glyphicon glyph="chevron-left"/>
+				Back to list
+			</Button>
 			<Grid>
 				<h3>User Details</h3>
 				<Row>
@@ -133,7 +137,8 @@ function ResultDetails({ result, repos }) {
 
 ResultDetails.propTypes = {
 	result: PropTypes.object.isRequired,
-	repos: PropTypes.array
+	repos: PropTypes.array,
+	goBack: PropTypes.func
 };
 
 export default ResultDetails;

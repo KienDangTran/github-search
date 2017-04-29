@@ -17,6 +17,7 @@ class SearchPage extends Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleSelect = this.handleSelect.bind(this);
+		this.handleGoBack = this.handleGoBack.bind(this);
 	}
 
 	handleDismissClick() {
@@ -52,22 +53,11 @@ class SearchPage extends Component {
 		}
 	}
 
-	renderResult() {
-		return this.state.results.length > 0
-			? (<ResultList results={ this.state.results } onSelect={ this.handleSelect } />)
-			: undefined;
-	}
-
-	renderResultDetail() {
-		if (this.state.selectedResult !== undefined) {
-			return (
-				<ResultDetail result={ this.state.selectedResult } repos={ this.state.repos } />
-			);
-		} else {
-			this.setState({
-				errors: 'Selected Result was empty'
-			})
-		}
+	handleGoBack() {
+		this.setState({
+			selectedResult: undefined,
+			repos: []
+		})
 	}
 
 	handleChange(e) {
@@ -94,13 +84,39 @@ class SearchPage extends Component {
 		if (!this.validate()) return;
 		axios.get(`https://api.github.com/search/users?q=${this.state.inputValue}`)
 			.then(response => {
-				if (response.status === 200) {
+				if (response.status === 200 && response.data.items.length > 0) {
 					this.setState({
 						results: response.data.items
+					});
+				} else {
+					this.setState({
+						errors: `"${this.state.inputValue}" doesn't match any result.`
 					});
 				}
 			})
 			.catch(error => { throw error });
+	}
+
+	renderResult() {
+		return this.state.results.length > 0
+			? (<ResultList results={ this.state.results } onSelect={ this.handleSelect } />)
+			: undefined;
+	}
+
+	renderResultDetail() {
+		if (this.state.selectedResult !== undefined) {
+			return (
+				<ResultDetail
+					result={ this.state.selectedResult }
+					repos={ this.state.repos }
+					goBack={ this.handleGoBack }
+				/>
+			);
+		} else {
+			this.setState({
+				errors: 'Selected Result was empty'
+			})
+		}
 	}
 
 	render() {
@@ -108,25 +124,23 @@ class SearchPage extends Component {
 			<div>
 				<PageHeader>Search on Github</PageHeader>
 				<Jumbotron>
-					<form>
-						<FormGroup controlId="username">
-							<ControlLabel htmlFor="username">Type a username and hit 'Search':</ControlLabel>
-							<FormControl
-								type="text"
-								value={ this.state.inputValue }
-								placeholder="Enter github username"
-								onChange={ this.handleChange }
-							/>
-						</FormGroup>
-						<Button
-							id="submit"
-							bsStyle="primary"
-							className="pull-left"
-							onClick={ this.handleSubmit }
-						>
-							Search
+					<FormGroup controlId="username">
+						<ControlLabel htmlFor="username">Type a username and hit 'Search':</ControlLabel>
+						<FormControl
+							type="text"
+							value={ this.state.inputValue }
+							placeholder="Enter github username"
+							onChange={ this.handleChange }
+						/>
+					</FormGroup>
+					<Button
+						id="submit"
+						bsStyle="primary"
+						className="pull-left"
+						onClick={ this.handleSubmit }
+					>
+						Search
 						</Button>
-					</form>
 				</Jumbotron>
 				<hr />
 				{ this.renderErrorMessage() }
