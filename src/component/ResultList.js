@@ -19,7 +19,7 @@ function ResultList({ results, onSelect }) {
 							return (
 								<tr key={ index }>
 									<td>{ index + 1 }</td>
-									<td><Image src={ result.avatar_url } responsive rounded thumbnail /></td>
+									<td><Image src={ result.avatar_url } responsive height="64" width="64"  /></td>
 									<td><a href="#" onClick={ e => { e.value = result; onSelect(e) } }>{ result.login }</a></td>
 								</tr>
 							)
