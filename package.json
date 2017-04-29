@@ -2,15 +2,18 @@
   "name": "oddle-github-search",
   "version": "0.0.1",
   "scripts": {
-    "start": "node server.js",
+    "dev": "node devServer.js",
     "lint": "eslint src",
-    "dist": "webpack -p --config ./webpack.config.js"
+    "clean":"rimraf dist",
+    "dist": "webpack -p --config ./webpack.config.prod.js --progress",
+    "prestart": "npm run dist",
+    "start": "node distServer.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/KienDangTran/oddle-github-search.git"
   },
-  "author": "Kien Dang Tran",
+  "author": "Kien Dang",
   "devDependencies": {
     "babel-core": "^6.0.20",
     "babel-eslint": "^4.1.3",
@@ -20,8 +23,6 @@
     "babel-preset-stage-0": "^6.0.15",
     "eslint": "^1.10.3",
     "eslint-plugin-react": "^3.6.2",
-    "express": "^4.13.4",
-    "html-webpack-plugin": "^2.28.0",
     "react-hot-loader": "^1.3.0",
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.6.1",
@@ -29,8 +30,11 @@
   },
   "dependencies": {
     "axios": "^0.16.1",
+    "express": "4.15.2",
+    "html-webpack-plugin": "^2.28.0",
     "react": "^0.14.6",
     "react-bootstrap": "^0.30.10",
-    "react-dom": "^0.14.6"
+    "react-dom": "^0.14.6",
+    "rimraf": "^2.6.1"
   }
 }
