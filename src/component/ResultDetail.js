@@ -1,11 +1,12 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import { PropTypes } from 'prop-types'
 import { Grid, Row, Col, ControlLabel, Image, Table, Button, Glyphicon } from 'react-bootstrap';
 
 function ResultDetails({ result, repos, goBack }) {
 	return (
 		<div>
-			<Button onClick={goBack}>
-				<Glyphicon glyph="chevron-left"/>
+			<Button onClick={ goBack }>
+				<Glyphicon glyph="chevron-left" />
 				Back to list
 			</Button>
 			<Grid>
@@ -16,76 +17,76 @@ function ResultDetails({ result, repos, goBack }) {
 					</Col>
 					<Col sm={ 8 }>
 						<Row>
-							<Col componentClass={ ControlLabel } sm={ 2 }>Id</Col>
-							<Col sm={ 10 }>{ result.id }</Col>
+							<Col componentClass={ ControlLabel } sm={ 3 }>Id</Col>
+							<Col sm={ 9 }>{ result.id }</Col>
 						</Row>
 						<Row>
-							<Col componentClass={ ControlLabel } sm={ 2 }>Username</Col>
-							<Col sm={ 10 }>{ result.login }</Col>
+							<Col componentClass={ ControlLabel } sm={ 3 }>Username</Col>
+							<Col sm={ 9 }>{ result.login }</Col>
 						</Row>
 						<Row>
-							<Col componentClass={ ControlLabel } sm={ 2 }>Type</Col>
-							<Col sm={ 10 }>{ result.type }</Col>
+							<Col componentClass={ ControlLabel } sm={ 3 }>Type</Col>
+							<Col sm={ 9 }>{ result.type }</Col>
 						</Row>
 						<Row>
-							<Col componentClass={ ControlLabel } sm={ 2 }>Score</Col>
-							<Col sm={ 10 }>{ result.score }</Col>
+							<Col componentClass={ ControlLabel } sm={ 3 }>Score</Col>
+							<Col sm={ 9 }>{ result.score }</Col>
 						</Row>
 						<Row>
-							<Col componentClass={ ControlLabel } sm={ 2 }>Site admin</Col>
-							<Col sm={ 10 }>{ result.site_admin ? 'Yes' : 'No' }</Col>
+							<Col componentClass={ ControlLabel } sm={ 3 }>Site admin</Col>
+							<Col sm={ 9 }>{ result.site_admin ? 'Yes' : 'No' }</Col>
 						</Row>
 						<Row>
-							<Col componentClass={ ControlLabel } sm={ 2 }>URL</Col>
-							<Col sm={ 10 }>{ result.url }</Col>
+							<Col componentClass={ ControlLabel } sm={ 3 }>URL</Col>
+							<Col sm={ 9 }>{ result.url }</Col>
 						</Row>
 						<Row>
-							<Col componentClass={ ControlLabel } sm={ 2 }>Avatar URL</Col>
-							<Col sm={ 10 }>{ result.avatar_url }</Col>
+							<Col componentClass={ ControlLabel } sm={ 3 }>Avatar URL</Col>
+							<Col sm={ 9 }>{ result.avatar_url }</Col>
 						</Row>
 						<Row>
-							<Col componentClass={ ControlLabel } sm={ 2 }>Events URL</Col>
-							<Col sm={ 10 }>{ result.events_url }</Col>
+							<Col componentClass={ ControlLabel } sm={ 3 }>Events URL</Col>
+							<Col sm={ 9 }>{ result.events_url }</Col>
 						</Row>
 						<Row>
-							<Col componentClass={ ControlLabel } sm={ 2 }>Followers URL</Col>
-							<Col sm={ 10 }>{ result.followers_url }</Col>
+							<Col componentClass={ ControlLabel } sm={ 3 }>Followers URL</Col>
+							<Col sm={ 9 }>{ result.followers_url }</Col>
 						</Row>
 						<Row>
-							<Col componentClass={ ControlLabel } sm={ 2 }>Following URL</Col>
-							<Col sm={ 10 }>{ result.following_url }</Col>
+							<Col componentClass={ ControlLabel } sm={ 3 }>Following URL</Col>
+							<Col sm={ 9 }>{ result.following_url }</Col>
 						</Row>
 						<Row>
-							<Col componentClass={ ControlLabel } sm={ 2 }>Gists URL</Col>
-							<Col sm={ 10 }>{ result.gists_url }</Col>
+							<Col componentClass={ ControlLabel } sm={ 3 }>Gists URL</Col>
+							<Col sm={ 9 }>{ result.gists_url }</Col>
 						</Row>
 						<Row>
-							<Col componentClass={ ControlLabel } sm={ 2 }>HTML URL</Col>
-							<Col sm={ 10 }>{ result.html_url }</Col>
+							<Col componentClass={ ControlLabel } sm={ 3 }>HTML URL</Col>
+							<Col sm={ 9 }>{ result.html_url }</Col>
 						</Row>
 						<Row>
-							<Col componentClass={ ControlLabel } sm={ 2 }>Organizations URL</Col>
-							<Col sm={ 10 }>{ result.organizations_url }</Col>
+							<Col componentClass={ ControlLabel } sm={ 3 }>Organizations URL</Col>
+							<Col sm={ 9 }>{ result.organizations_url }</Col>
 						</Row>
 						<Row>
-							<Col componentClass={ ControlLabel } sm={ 2 }>Received Events URL</Col>
-							<Col sm={ 10 }>{ result.received_events_url }</Col>
+							<Col componentClass={ ControlLabel } sm={ 3 }>Received Events URL</Col>
+							<Col sm={ 9 }>{ result.received_events_url }</Col>
 						</Row>
 						<Row>
-							<Col componentClass={ ControlLabel } sm={ 2 }>Gravatar ID</Col>
-							<Col sm={ 10 }>{ result.gravatar_id }</Col>
+							<Col componentClass={ ControlLabel } sm={ 3 }>Gravatar ID</Col>
+							<Col sm={ 9 }>{ result.gravatar_id }</Col>
 						</Row>
 						<Row>
-							<Col componentClass={ ControlLabel } sm={ 2 }>Repos URL</Col>
-							<Col sm={ 10 }>{ result.repos_url }</Col>
+							<Col componentClass={ ControlLabel } sm={ 3 }>Repos URL</Col>
+							<Col sm={ 9 }>{ result.repos_url }</Col>
 						</Row>
 						<Row>
-							<Col componentClass={ ControlLabel } sm={ 2 }>Starred URL</Col>
-							<Col sm={ 10 }>{ result.starred_url }</Col>
+							<Col componentClass={ ControlLabel } sm={ 3 }>Starred URL</Col>
+							<Col sm={ 9 }>{ result.starred_url }</Col>
 						</Row>
 						<Row>
-							<Col componentClass={ ControlLabel } sm={ 2 }>Subscriptions URL</Col>
-							<Col sm={ 10 }>{ result.subscriptions_url }</Col>
+							<Col componentClass={ ControlLabel } sm={ 3 }>Subscriptions URL</Col>
+							<Col sm={ 9 }>{ result.subscriptions_url }</Col>
 						</Row>
 					</Col>
 				</Row>

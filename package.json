@@ -2,11 +2,12 @@
   "name": "oddle-github-search",
   "version": "0.0.1",
   "scripts": {
-    "dev": "node devServer.js",
+    "dev": "npm run test && node devServer.js",
     "lint": "eslint src",
-    "clean":"rimraf dist",
+    "clean": "rimraf dist coverage",
     "dist": "webpack -p --config ./webpack.config.prod.js --progress",
-    "prestart": "npm run dist",
+    "test": "jest --coverage --verbose",
+    "prestart": "npm test && npm run dist",
     "start": "node distServer.js"
   },
   "repository": {
@@ -15,15 +16,20 @@
   },
   "author": "Kien Dang",
   "devDependencies": {
-    "babel-core": "^6.0.20",
-    "babel-eslint": "^4.1.3",
-    "babel-loader": "^6.0.1",
-    "babel-preset-es2015": "^6.0.15",
-    "babel-preset-react": "^6.0.15",
-    "babel-preset-stage-0": "^6.0.15",
+    "babel-core": "^6.24.1",
+    "babel-eslint": "^4.1.8",
+    "babel-jest": "^19.0.0",
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "enzyme": "^2.8.2",
     "eslint": "^1.10.3",
-    "eslint-plugin-react": "^3.6.2",
-    "react-hot-loader": "^1.3.0",
+    "eslint-plugin-react": "^3.16.1",
+    "jest-cli": "^19.0.2",
+    "react-hot-loader": "^1.3.1",
+    "react-test-renderer": "^15.5.4",
+    "sinon": "^2.1.0",
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.10.0"
@@ -32,9 +38,10 @@
     "axios": "^0.16.1",
     "express": "4.15.2",
     "html-webpack-plugin": "^2.28.0",
-    "react": "^0.14.6",
+    "prop-types": "^15.5.8",
+    "react": "^15.5.4",
     "react-bootstrap": "^0.30.10",
-    "react-dom": "^0.14.6",
+    "react-dom": "^15.5.4",
     "rimraf": "^2.6.1"
   }
 }

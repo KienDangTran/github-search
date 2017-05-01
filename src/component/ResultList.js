@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import { PropTypes } from 'prop-types'
 import { Table, Image, Label } from 'react-bootstrap';
 
 function ResultList({ results, onSelect }) {
@@ -20,7 +21,7 @@ function ResultList({ results, onSelect }) {
 								<tr key={ index }>
 									<td>{ index + 1 }</td>
 									<td><Image src={ result.avatar_url } responsive height="64" width="64"  /></td>
-									<td><a href="#" onClick={ e => { e.value = result; onSelect(e) } }>{ result.login }</a></td>
+									<td><a href="#" onClick={ e => { e.value = result, e.persist(); onSelect(e) } }>{ result.login }</a></td>
 								</tr>
 							)
 						})
