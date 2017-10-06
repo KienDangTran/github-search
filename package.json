@@ -2,12 +2,13 @@
   "name": "oddle-github-search",
   "version": "0.0.1",
   "scripts": {
-    "dev": "npm run test && node devServer.js",
-    "lint": "eslint src",
+   "lint": "eslint src",
     "clean": "rimraf dist coverage",
     "dist": "webpack -p --config ./webpack.config.prod.js --progress",
-    "test": "jest --coverage --verbose",
-    "prestart": "npm test && npm run dist",
+    "test": "npm run lint && jest --coverage --verbose",
+    "dev": "npm test && node devServer.js",
+    "build": "npm run dist",
+    "prestart": "npm test && npm build",
     "start": "node distServer.js"
   },
   "repository": {

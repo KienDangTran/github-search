@@ -7,9 +7,9 @@ npm-debug.log
 *.dev
 .DS_Store
 .vscode
+
 *REPORT*
 coverage
 
-# Docker
-Dockerfile
-docker-compose.yml
+# Build Artifacts
+dist 
