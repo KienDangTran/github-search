@@ -7,8 +7,7 @@
     "dist": "webpack -p --config ./webpack.config.prod.js --progress",
     "test": "npm run lint && jest --coverage --verbose",
     "dev": "npm test && node devServer.js",
-    "build": "npm run dist",
-    "prestart": "npm test && npm build",
+    "prestart": "npm install && npm test && npm run dist",
     "start": "node distServer.js"
   },
   "repository": {
